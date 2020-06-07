@@ -85,7 +85,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -117,8 +122,16 @@
               "devServerTarget": "blueprint-web:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "blueprint-web"
+    }
+  },
+  "defaultProject": "blueprint-web",
+  "cli": {
+    "analytics": "113f82e3-399b-4da6-8492-26b8ede6ff20"
+  }
 }

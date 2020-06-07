@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "blueprint-ui": {
+      "hosting": {
+        "blueprint-web": [
+          "blueprint-ui"
+        ]
+      }
+    }
+  }
+}
