@@ -11,6 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavbarComponent } from './nav/navbar/navbar/navbar.component';
 import { LoginComponent } from './login/login/login/login.component';
 import { CreateProjectComponent } from './create/create-project/create-project/create-project.component';
+import { CurrentProjectsComponent } from './current/current-projects/current-projects/current-projects.component';
+import { UpdateProjectComponent } from './update/update-project/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CreateProjectComponent } from './create/create-project/create-project/c
     NavbarComponent,
     LoginComponent,
     CreateProjectComponent,
+    CurrentProjectsComponent,
+    UpdateProjectComponent,
   ],
   imports: [
     BrowserModule,
