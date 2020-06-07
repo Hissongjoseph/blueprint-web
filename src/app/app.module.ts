@@ -10,11 +10,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { NavbarComponent } from './nav/navbar/navbar/navbar.component';
+import { LoginComponent } from './login/login/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
