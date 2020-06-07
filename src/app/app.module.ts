@@ -3,25 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 import { NgbAuthFirebaseUIModule } from '@firebaseui/ng-bootstrap';
+import { AngularFireAuthModule } from '@angular/fire/auth'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { NavbarComponent } from './nav/navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbAuthFirebaseUIModule.forRoot({
-      apiKey: "AIzaSyC3d0m8yud5FcZ4tfKsRsc5bHeBfjKsDmg",
-      authDomain: "blueprint-ui.firebaseapp.com",
-      databaseURL: "https://blueprint-ui.firebaseio.com",
-      projectId: "blueprint-ui",
-      storageBucket: "blueprint-ui.appspot.com",
-      messagingSenderId: "891887076356",
-      appId: "1:891887076356:web:376ff5b7b6a70ab1faa151",
-      measurementId: "G-GPHJ1WM235"
-       })
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
