@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login/login/login.component';
 import { CreateProjectComponent } from './create/create-project/create-project/create-project.component';
 import { CurrentProjectsComponent } from './current/current-projects/current-projects/current-projects.component';
 import { UpdateProjectComponent } from './update/update-project/update-project/update-project.component';
-
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,9 @@ import { UpdateProjectComponent } from './update/update-project/update-project/u
     AngularFireAuthModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthGuardModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
