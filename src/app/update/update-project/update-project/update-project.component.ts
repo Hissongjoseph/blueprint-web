@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./update-project.component.css']
 })
 export class UpdateProjectComponent implements OnInit {
+  project: any
   updateForm: FormGroup;
   isDataLoaded: boolean;
   isProject: boolean
