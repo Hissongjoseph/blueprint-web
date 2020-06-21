@@ -2,27 +2,69 @@
   <div class="card">
     <div class="card-body">
       <form form [formGroup]="updateForm" (ngSubmit)="onSubmit">
-            <div class="form-group">
-                <label for="name">Project</label>
-                <select class="form-control" id="name" formControlName="name">
-                    <option>Choose a Project:</option>
-                    <option (click)="onSelect(project)"></option>
-                </select>
-            </div>
-              <div class="form-group">
-                  <label for="id">Project ID</label>
-                  <input class="form-control" type="text" formControlName="id" placeholder="Project ID"readonly>
-            </div>
+        <div class="form-group">
+          <label for="board">Choose Board:</label>
+          <select class="form-control" [(ngModel)]="selectedBoard" (change)="onChange($event)" id="board"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Project</label>
+          <select class="form-control" id="name" formControlName="name" (change)="onProjectChange($event)">
+            <option *ngFor="let company of projectDetails" [value]="company.name" selected>{{ company.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id">Project ID</label>
+          <input class="form-control" type="text" value="{{ selectedProjectDetails.id }}" readonly>
+        </div>
+        <div class="form-row">
+          <div class="col">
             <div class="form-group">
               <label for="materialsUsed">Material Used</label>
-              <input type="text" class="form-control" formControlName="materialsUsed" placeholder="Material Used" >
-          </div>
-            <div class="form-group">
-                <label for="hoursUsed">Add Hours Used:</label>
-                <input type="text" class="form-control" formControlName="hoursUsed" placeholder="Hours Used" >
+              <input type="text" class="form-control" formControlName="materialsUsed" placeholder="Material Used">
             </div>
-            <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="id">Materials Used</label>
+              <input class="form-control" type="text"
+                value="{{ selectedProjectDetails.materialsUsed }}" readonly>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="id">Materials Allocated</label>
+              <input class="form-control" type="text"
+                value="{{ selectedProjectDetails.materialsAllocated }}" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="hoursUsed">Add Hours Used:</label>
+              <input type="text" class="form-control" formControlName="hoursUsed" placeholder="Hours Used">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="id">Hours Used</label>
+              <input class="form-control" type="text"
+                value="{{ selectedProjectDetails.hoursUsed }}" readonly>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="id">Hours Allocated</label>
+              <input class="form-control" type="text"
+                value="{{ selectedProjectDetails.hoursAllocated }}" readonly>
+            </div>
+          </div>
+        </div>
+        <button type="submit" (click)="onSubmit()" [disabled]="!updateForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
   </div>
 </div>

@@ -14,7 +14,7 @@ export class FirebaseService {
     private afs: AngularFirestore
   ) {}
 
-  getProjectNames(userId: string) {
+  getBoardNames(userId: string) {
     return new Promise<any>((resolve, reject) => {
         this.afs.doc('users/' + userId).valueChanges()
         .subscribe(
@@ -26,11 +26,9 @@ export class FirebaseService {
     );
   }
 
-  getProjectDetails(userId: string, projectName: string) {
-    this.validated = false;
-
+  getAllProjectDetails(userId: string, boardName: string) {
     return new Promise<any>((resolve, reject) => {
-        this.afs.collection('companies/' + projectName + '/projects').valueChanges()
+        this.afs.collection('companies/' + boardName + '/projects').valueChanges()
         .subscribe(
           snapshots => {
             resolve(snapshots);
@@ -40,7 +38,23 @@ export class FirebaseService {
     );
   }
 
-  createProject(projectName: string, project: Project) {
-    return this.afs.collection('companies/' + projectName + '/projects').add(project);
+  getProjectDetailsByProjectName(userId: string, boardName: string, projectName: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection('companies/' + boardName + '/projects').doc(projectName).valueChanges()
+      .subscribe(
+        snapshots => {
+          resolve(snapshots);
+        }
+      );
+    }
+  );
+  }
+
+  createProject(boardName: string, project: Project) {
+    return this.afs.collection('companies/' + boardName + '/projects').doc(project.name).set(project);
+  }
+
+  updateProject(boardName: string, project: Project) {
+    return this.afs.collection('companies/' + boardName + '/projects').doc(project.name).update(project);
   }
 }

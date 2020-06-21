@@ -1,31 +1,33 @@
-<form>
-  <label for="project">Choose Board:</label>
-  <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
-  </select>
-</form>
+<div class="container-fluid">
+  <form>
+    <label for="project">Choose Board:</label>
+    <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
+    </select>
+  </form>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Project ID</th>
-    <th scope="col">Project</th>
-    <th scope="col">Hours Used</th>
-    <th scope="col">Hours Allocated</th>
-    <th scope="col">Materials Used</th>
-    <th scope="col">Materials Allocated</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let project of projectDetails; index as i">
-    <th scope="row">{{ i + 1 }}</th>
-    <td>{{ project.id }}</td>
-    <td>{{ project.name }}</td>
-    <td>{{ project.hoursUsed | number }}</td>
-    <td>{{ project.hoursAllocated | number }}</td>
-    <td>{{ project.materialsUsed | currency }}</td>
-    <td>{{ project.materialsAllocated | currency }}</td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Project ID</th>
+      <th scope="col">Project</th>
+      <th scope="col">Hours Used</th>
+      <th scope="col">Hours Allocated</th>
+      <th scope="col">Materials Used</th>
+      <th scope="col">Materials Allocated</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let project of projectDetails; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ project.id }}</td>
+      <td>{{ project.name }}</td>
+      <td>{{ project.hoursUsed | number }}</td>
+      <td>{{ project.hoursAllocated | number }}</td>
+      <td>{{ project.materialsUsed | currency }}</td>
+      <td>{{ project.materialsAllocated | currency }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -28,20 +28,32 @@ export class CreateProjectComponent implements OnInit {
   ngOnInit() {
     this.createForm = this.formBuilder.group({
       project: ['', Validators.required],
-      id: [, Validators.required],
+      id: [, [
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(1),
+      ]],
       name: ['', Validators.required],
-      hoursAllocated: [, Validators.required],
-      materialsAllocated: [, Validators.required]
+      hoursAllocated: [, [
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(1),
+      ]],
+      materialsAllocated: [,[
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(1),
+      ]]
     });
 
     this.projectNames = [];
     this.currentUserUID = this.auth.auth.currentUser.uid;
 
-    this.firebaseService.getProjectNames(this.currentUserUID)
+    this.firebaseService.getBoardNames(this.currentUserUID)
       .then(result => {
         this.projectNames = result;
       }
-    )
+    );
   }
 
   get form() {
@@ -50,10 +62,10 @@ export class CreateProjectComponent implements OnInit {
 
   onSubmit() {
     if (this.createForm.valid) {
-      console.log(this.createForm.value);
-      this.firebaseService.createProject(this.createForm.controls['project'].value, this.createForm.value)
-      .then(
-        this.router.navigate['current']
+      this.firebaseService.createProject(this.createForm.controls['project'].value, this.createForm.value).then(
+        res => {
+          this.router.navigate(['/']);
+        }
       );
     }
   }

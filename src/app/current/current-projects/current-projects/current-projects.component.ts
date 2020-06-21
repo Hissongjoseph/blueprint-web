@@ -26,7 +26,7 @@ export class CurrentProjectsComponent implements OnInit{
 
     this.currentUserUID = this.auth.auth.currentUser.uid;
 
-    this.firebaseService.getProjectNames(this.currentUserUID)
+    this.firebaseService.getBoardNames(this.currentUserUID)
       .then(result => {
         this.projectNames = result;
       }
@@ -35,7 +35,7 @@ export class CurrentProjectsComponent implements OnInit{
 
   onChange(event: any) {
     this.selectedProject = event.target.value;
-    this.firebaseService.getProjectDetails(this.currentUserUID, this.selectedProject)
+    this.firebaseService.getAllProjectDetails(this.currentUserUID, this.selectedProject)
       .then(
         result => {
           this.projectDetails = result;
