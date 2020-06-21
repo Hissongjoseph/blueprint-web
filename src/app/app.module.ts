@@ -16,6 +16,7 @@ import { UpdateProjectComponent } from './update/update-project/update-project/u
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UpdateBoardComponent } from './boards/update-board/update-board/update-board.component';
+import { BoardsComponent } from './boards/boards/boards/boards.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { UpdateBoardComponent } from './boards/update-board/update-board/update-
     CurrentProjectsComponent,
     UpdateProjectComponent,
     UpdateBoardComponent,
+    BoardsComponent,
   ],
   imports: [
     BrowserModule,

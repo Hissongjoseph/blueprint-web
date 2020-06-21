@@ -39,17 +39,17 @@ export class CreateProjectComponent implements OnInit {
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(1),
       ]],
-      materialsAllocated: [,[
+      materialsAllocated: [, [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(1),
       ]],
-      materialsUsed: [,[
+      materialsUsed: [ , [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(1),
       ]],
-      hoursUsed: [,[
+      hoursUsed: [ , [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(1),
