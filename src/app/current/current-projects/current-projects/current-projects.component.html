@@ -2,10 +2,12 @@
   <form>
     <label for="project">Choose Board:</label>
     <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
+      <option disabled selected>Select a Board</option>
       <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
     </select>
   </form>
 
+  <button type="button" class="btn btn-secondary" (click)='downloadCSV()'>Download As CSV</button>
   <table class="table table-striped">
     <thead>
     <tr>

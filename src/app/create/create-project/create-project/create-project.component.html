@@ -5,6 +5,7 @@
         <div class="form-group">
           <label for="project">Board</label>
           <select class="form-control" formControlName="project">
+            <option disabled>Select a Board</option>
             <option *ngFor="let company of projectNames['companies']" [value]="company">{{ company }}</option>
           </select>
         </div>

@@ -10,6 +10,8 @@ import * as firebase from 'firebase';
 export class FirebaseService {
 
   validated: boolean;
+  exist: boolean;
+  docRef: any;
 
   constructor(
     private afs: AngularFirestore
@@ -27,6 +29,22 @@ export class FirebaseService {
     );
   }
 
+  checkIfBoardExists(boardName: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.docRef = this.afs.collection('companies').doc(boardName).get().subscribe(
+        res => {
+          if (res.exists) {
+            resolve(true);
+          }
+          else {
+            resolve(false);
+          }
+        }
+      );
+    }
+    );
+  }
+
   getAllProjectDetails(userId: string, boardName: string) {
     return new Promise<any>((resolve, reject) => {
       this.afs.collection('companies/' + boardName + '/projects').valueChanges()
@@ -35,8 +53,7 @@ export class FirebaseService {
             resolve(snapshots);
           }
         );
-    }
-    );
+    });
   }
 
   getProjectDetailsByProjectName(userId: string, boardName: string, projectName: string) {
@@ -76,10 +93,14 @@ export class FirebaseService {
   }
 
   addBoardToUser(boardName: string, userEmail: string) {
-    return this.afs.collection('users/').doc(userEmail).update({companies: firebase.firestore.FieldValue.arrayUnion(boardName)});
+    return this.afs.collection('users/').doc(userEmail).update({ companies: firebase.firestore.FieldValue.arrayUnion(boardName) });
   }
 
   createInitBoard(userEmail: string) {
-    return this.afs.collection('companies/').doc(userEmail).set({users:  firebase.firestore.FieldValue.arrayUnion(userEmail)});
+    return this.afs.collection('companies/').doc(userEmail).set({ users: firebase.firestore.FieldValue.arrayUnion(userEmail) });
+  }
+
+  createBoard(boardName: string, userEmail: string) {
+    return this.afs.collection('companies/').doc(boardName).set({ users: firebase.firestore.FieldValue.arrayUnion(userEmail) });
   }
 }

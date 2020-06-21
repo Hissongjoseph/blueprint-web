@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CurrentProjectsComponent } from './current-projects.component';
+import { saveAs } from 'file-saver/FileSaver';
 
 describe('CurrentProjectsComponent', () => {
   let component: CurrentProjectsComponent;

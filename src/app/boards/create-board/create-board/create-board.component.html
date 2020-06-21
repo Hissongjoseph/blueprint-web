@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="boardForm" (ngSubmit)="onSubmit">
+        <div class="form-group">
+          <label for="newBoard">Board Name</label>
+          <input type="text" class="form-control" formControlName="newBoard" placeholder="New Board Name">
+        </div>
+        <button type="submit" (click)="onSubmit()" [disabled]="!boardForm.valid"
+          class="btn btn-primary justify-content-center">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

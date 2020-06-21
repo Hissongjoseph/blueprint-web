@@ -18,6 +18,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UpdateBoardComponent } from './boards/update-board/update-board/update-board.component';
 import { BoardsComponent } from './boards/boards/boards/boards.component';
 import { ManageBoardsComponent } from './boards/manage-boards/manage-boards/manage-boards.component';
+import { CreateBoardComponent } from './boards/create-board/create-board/create-board.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { ManageBoardsComponent } from './boards/manage-boards/manage-boards/mana
     UpdateBoardComponent,
     BoardsComponent,
     ManageBoardsComponent,
+    CreateBoardComponent,
   ],
   imports: [
     BrowserModule,
