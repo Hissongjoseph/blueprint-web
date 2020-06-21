@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
-  { path: 'current', component: CurrentProjectsComponent, canActivate: [AngularFireAuthGuard]},
+  { path: '', component: CurrentProjectsComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'create', component: CreateProjectComponent, canActivate: [AngularFireAuthGuard]},
   { path: 'update', component: UpdateProjectComponent, canActivate: [AngularFireAuthGuard]}
 ];

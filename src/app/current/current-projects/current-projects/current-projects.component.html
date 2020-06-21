@@ -1,3 +1,10 @@
+<form>
+  <label for="project">Choose Board:</label>
+  <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
+  </select>
+</form>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -11,14 +18,14 @@
   </tr>
   </thead>
   <tbody>
-  <!-- <tr *ngFor="let project of projects; index as i">
+  <tr *ngFor="let project of projectDetails; index as i">
     <th scope="row">{{ i + 1 }}</th>
     <td>{{ project.id }}</td>
     <td>{{ project.name }}</td>
-    <td>{{ project.hours_used | number }}</td>
-    <td>{{ project.hours_allocated | number }}</td>
-    <td>{{ project.materials_used | currency }}</td>
-    <td>{{ project.materials_allocated | currency }}</td>
-  </tr> -->
+    <td>{{ project.hoursUsed | number }}</td>
+    <td>{{ project.hoursAllocated | number }}</td>
+    <td>{{ project.materialsUsed | currency }}</td>
+    <td>{{ project.materialsAllocated | currency }}</td>
+  </tr>
   </tbody>
 </table>
