@@ -10,27 +10,27 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavbarComponent } from './nav/navbar/navbar/navbar.component';
 import { LoginComponent } from './login/login/login/login.component';
-import { CreateProjectComponent } from './create/create-project/create-project/create-project.component';
-import { CurrentProjectsComponent } from './current/current-projects/current-projects/current-projects.component';
-import { UpdateProjectComponent } from './update/update-project/update-project/update-project.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UpdateBoardComponent } from './boards/update-board/update-board/update-board.component';
 import { BoardsComponent } from './boards/boards/boards/boards.component';
 import { ManageBoardsComponent } from './boards/manage-boards/manage-boards/manage-boards.component';
 import { CreateBoardComponent } from './boards/create-board/create-board/create-board.component';
+import { CreateProjectComponent } from './projects/create/create-project/create-project/create-project.component';
+import { UpdateProjectComponent } from './projects/update/update-project/update-project/update-project.component';
+import { CurrentProjectsComponent } from './projects/current/current-projects/current-projects/current-projects.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    CreateProjectComponent,
-    CurrentProjectsComponent,
-    UpdateProjectComponent,
     UpdateBoardComponent,
     BoardsComponent,
     ManageBoardsComponent,
     CreateBoardComponent,
+    CreateProjectComponent,
+    UpdateProjectComponent,
+    CurrentProjectsComponent
   ],
   imports: [
     BrowserModule,
