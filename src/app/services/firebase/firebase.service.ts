@@ -12,42 +12,42 @@ export class FirebaseService {
 
   constructor(
     private afs: AngularFirestore
-  ) {}
+  ) { }
 
   getBoardNames(userId: string) {
     return new Promise<any>((resolve, reject) => {
-        this.afs.doc('users/' + userId).valueChanges()
+      this.afs.doc('users/' + userId).valueChanges()
         .subscribe(
           snapshots => {
             resolve(snapshots);
           }
         );
-      }
+    }
     );
   }
 
   getAllProjectDetails(userId: string, boardName: string) {
     return new Promise<any>((resolve, reject) => {
-        this.afs.collection('companies/' + boardName + '/projects').valueChanges()
+      this.afs.collection('companies/' + boardName + '/projects').valueChanges()
         .subscribe(
           snapshots => {
             resolve(snapshots);
           }
         );
-      }
+    }
     );
   }
 
   getProjectDetailsByProjectName(userId: string, boardName: string, projectName: string) {
     return new Promise<any>((resolve, reject) => {
       this.afs.collection('companies/' + boardName + '/projects').doc(projectName).valueChanges()
-      .subscribe(
-        snapshots => {
-          resolve(snapshots);
-        }
-      );
+        .subscribe(
+          snapshots => {
+            resolve(snapshots);
+          }
+        );
     }
-  );
+    );
   }
 
   createProject(boardName: string, project: Project) {
@@ -56,5 +56,21 @@ export class FirebaseService {
 
   updateProject(boardName: string, project: Project) {
     return this.afs.collection('companies/' + boardName + '/projects').doc(project.name).update(project);
+  }
+
+  getUsersOnBoard(boardName: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.doc('companies/' + boardName).valueChanges()
+        .subscribe(
+          snapshots => {
+            resolve(snapshots);
+          }
+        );
+    }
+    );
+  }
+
+  addUserToBoard(boardName: string, users: string) {
+    return this.afs.collection('companies/').doc(boardName).update(users);
   }
 }
