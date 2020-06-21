@@ -4,6 +4,7 @@ import { auth } from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/modals/user/user.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,12 @@ export class LoginComponent implements OnInit {
   @Input()
   auth: AngularFireAuth;
 
-  userCol: AngularFirestoreCollection<User>
-  user: User
+  userCol: AngularFirestoreCollection<User>;
+  user: User;
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -28,11 +30,11 @@ export class LoginComponent implements OnInit {
     this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
       res => {
         if (res.additionalUserInfo.isNewUser) {
-          this.userCol = this.afs.collection<User>('users')
-          this.user = { companies: [res.user.email]}
-          this.userCol.doc(res.user.uid).set(this.user)
+          this.userCol = this.afs.collection<User>('users');
+          this.user = { companies: [res.user.email]};
+          this.userCol.doc(res.user.email).set(this.user);
         }
       }
-    )
+    );
   }
 }
