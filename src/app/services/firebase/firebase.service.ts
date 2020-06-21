@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseAuth } from '@angular/fire';
 import { Project } from 'src/app/modals/project/project.model';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,13 @@ export class FirebaseService {
 
   addUserToBoard(boardName: string, users: string) {
     return this.afs.collection('companies/').doc(boardName).update(users);
+  }
+
+  addBoardToUser(boardName: string, userEmail: string) {
+    return this.afs.collection('users/').doc(userEmail).update({companies: firebase.firestore.FieldValue.arrayUnion(boardName)});
+  }
+
+  createInitBoard(userEmail: string) {
+    return this.afs.collection('companies/').doc(userEmail).set({users:  firebase.firestore.FieldValue.arrayUnion(userEmail)});
   }
 }

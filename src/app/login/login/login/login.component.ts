@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { User } from 'src/app/modals/user/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private firebaseService: FirebaseService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
           this.userCol = this.afs.collection<User>('users');
           this.user = { companies: [res.user.email]};
           this.userCol.doc(res.user.email).set(this.user);
+          this.firebaseService.createInitBoard(res.user.email);
         }
       }
     );

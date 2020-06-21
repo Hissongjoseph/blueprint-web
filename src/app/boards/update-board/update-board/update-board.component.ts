@@ -29,7 +29,7 @@ export class UpdateBoardComponent implements OnInit {
 
     this.boardNames = [];
     this.boardUsers = [];
-    this.currentUserUID = this.auth.auth.currentUser.uid;
+    this.currentUserUID = this.auth.auth.currentUser.email;
 
     this.firebaseService.getBoardNames(this.currentUserUID)
       .then(result => {
@@ -54,6 +54,11 @@ export class UpdateBoardComponent implements OnInit {
     this.firebaseService.addUserToBoard(this.selectedBoard, this.boardUsers).then(
       res => {
         this.updateForm.reset();
+      }
+    );
+    this.firebaseService.addBoardToUser(this.selectedBoard, this.user).then(
+      res => {
+        console.log(res);
       }
     );
   }

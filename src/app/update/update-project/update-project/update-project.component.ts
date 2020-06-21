@@ -53,7 +53,7 @@ export class UpdateProjectComponent implements OnInit {
     });
 
     this.projectNames = [];
-    this.currentUserUID = this.auth.auth.currentUser.uid;
+    this.currentUserUID = this.auth.auth.currentUser.email;
 
     this.firebaseService.getBoardNames(this.currentUserUID)
       .then(result => {

@@ -24,7 +24,7 @@ export class CurrentProjectsComponent implements OnInit{
     this.projectNames = [];
     this.selectedProject = '';
 
-    this.currentUserUID = this.auth.auth.currentUser.uid;
+    this.currentUserUID = this.auth.auth.currentUser.email;
 
     this.firebaseService.getBoardNames(this.currentUserUID)
       .then(result => {
