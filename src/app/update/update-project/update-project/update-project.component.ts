@@ -20,6 +20,10 @@ export class UpdateProjectComponent implements OnInit {
   selectedProject: any;
   projectDetails: any;
   selectedProjectDetails: any;
+  totalHours: number;
+  addedHours: number;
+  totalMaterials: number;
+  addedMaterials: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,6 +88,15 @@ export class UpdateProjectComponent implements OnInit {
 
   onSubmit() {
     if (this.updateForm.valid) {
+      this.totalHours = Number(this.selectedProjectDetails.hoursUsed);
+      this.addedHours = Number(this.updateForm.controls['hoursUsed'].value);
+
+      this.totalMaterials = Number(this.selectedProjectDetails.materialsUsed);
+      this.addedMaterials = Number(this.updateForm.controls['materialsUsed'].value);
+
+      this.updateForm.controls['hoursUsed'].setValue(this.addedHours + this.totalHours);
+      this.updateForm.controls['materialsUsed'].setValue(this.addedMaterials + this.totalMaterials);
+
       this.firebaseService.updateProject(this.selectedBoard, this.updateForm.value).then(
         res => {
           this.router.navigate(['/']);

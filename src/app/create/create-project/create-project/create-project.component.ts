@@ -43,7 +43,17 @@ export class CreateProjectComponent implements OnInit {
         Validators.required,
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(1),
-      ]]
+      ]],
+      materialsUsed: [,[
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(1),
+      ]],
+      hoursUsed: [,[
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(1),
+      ]],
     });
 
     this.projectNames = [];
