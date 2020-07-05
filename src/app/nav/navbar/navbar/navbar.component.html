@@ -15,17 +15,17 @@
         <a class="nav-link" routerLink="/update">Update Project</a>
       </li>
     </ul>
-    <ul>
-      <form class="form-inline">
-        <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
-          <option disabled selected>Select a Board</option>
-          <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
-        </select>
-      </form>
-    </ul>
     <ul class="navbar-nav">
+      <li>
+        <form class="form-inline">
+          <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
+            <option disabled selected>{{ selectedProject }}</option>
+            <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
+          </select>
+        </form>
+      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle btn btn-outline-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Settings
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

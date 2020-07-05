@@ -32,6 +32,10 @@ export class CurrentProjectsComponent implements OnInit {
         result => {
           this.projectDetails = result;
         }
+      ).catch(
+        res => {
+          this.projectDetails = [];
+        }
       );
   }
 

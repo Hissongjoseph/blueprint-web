@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectNames = [];
-    this.selectedProject = '';
+    this.selectedProject = localStorage.getItem('board');
 
     this.currentUserUID = this.auth.auth.currentUser.email;
 
@@ -41,6 +41,7 @@ export class NavbarComponent implements OnInit {
   onChange(event: any) {
     this.selectedProject = event.target.value;
     localStorage.setItem('board', this.selectedProject);
+    window.location.reload();
   }
 
 }
