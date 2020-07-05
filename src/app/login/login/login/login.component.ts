@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/modals/user/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    private authService: AuthService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
           this.userCol.doc(res.user.email).set(this.user);
           this.firebaseService.createInitBoard(res.user.email);
         }
+        this.router.navigate(['/']);
       }
     );
   }
