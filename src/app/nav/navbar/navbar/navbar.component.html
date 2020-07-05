@@ -18,6 +18,7 @@
     <ul class="navbar-nav">
       <li>
         <form class="form-inline">
+          <label class="nav-link" for="project">Select Board:</label>
           <select class="form-control" [(ngModel)]="selectedProject" (change)="onChange($event)" id="project" [ngModelOptions]="{standalone: true}">
             <option disabled selected>{{ selectedProject }}</option>
             <option *ngFor="let company of projectNames['companies']" [value]="company" selected>{{ company }}</option>
