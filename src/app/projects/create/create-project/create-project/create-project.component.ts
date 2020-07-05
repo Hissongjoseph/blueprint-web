@@ -16,7 +16,7 @@ export class CreateProjectComponent implements OnInit {
   currentUserUID: string;
   createForm: FormGroup;
   project: Project;
-  projectNames: Array<any>;
+  boardName: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,8 +26,10 @@ export class CreateProjectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.boardName = localStorage.getItem('board');
+
     this.createForm = this.formBuilder.group({
-      project: ['', Validators.required],
+      project: [this.boardName, Validators.required],
       id: [, [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
@@ -55,15 +57,6 @@ export class CreateProjectComponent implements OnInit {
         Validators.minLength(1),
       ]],
     });
-
-    this.projectNames = [];
-    this.currentUserUID = this.auth.auth.currentUser.email;
-
-    this.firebaseService.getBoardNames(this.currentUserUID)
-      .then(result => {
-        this.projectNames = result;
-      }
-    );
   }
 
   get form() {

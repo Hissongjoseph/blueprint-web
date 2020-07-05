@@ -15,7 +15,7 @@ export class UpdateProjectComponent implements OnInit {
   updateForm: FormGroup;
   isDataLoaded: boolean;
   isProject: boolean;
-  projectNames: Array<any>;
+  boardName: string;
   selectedBoard: any;
   selectedProject: any;
   projectDetails: any;
@@ -36,9 +36,10 @@ export class UpdateProjectComponent implements OnInit {
     this.selectedProjectDetails = [];
     this.isProject = false;
     this.isDataLoaded = false;
+    this.boardName = localStorage.getItem('board');
 
     this.updateForm = this.formBuilder.group({
-      board: [''],
+      board: [this.boardName],
       name: ['', Validators.required],
       materialsUsed: [, [
         Validators.required,
@@ -51,34 +52,23 @@ export class UpdateProjectComponent implements OnInit {
         Validators.minLength(1),
       ]]
     });
-
-    this.projectNames = [];
     this.currentUserUID = this.auth.auth.currentUser.email;
 
-    this.firebaseService.getBoardNames(this.currentUserUID)
-      .then(result => {
-        this.projectNames = result;
-      }
-    );
+    this.firebaseService.getAllProjectDetails(this.currentUserUID, this.boardName)
+    .then(
+      result => {
+        this.projectDetails = result;
+    }
+  );
   }
 
   get form() {
     return this.updateForm.controls;
   }
 
-  onChange(event: any) {
-    this.selectedBoard = event.target.value;
-    this.firebaseService.getAllProjectDetails(this.currentUserUID, this.selectedBoard)
-      .then(
-        result => {
-          this.projectDetails = result;
-      }
-    );
-  }
-
   onProjectChange(event: any) {
     this.selectedProject = event.target.value;
-    this.firebaseService.getProjectDetailsByProjectName(this.currentUserUID, this.selectedBoard, this.selectedProject)
+    this.firebaseService.getProjectDetailsByProjectName(this.currentUserUID, this.boardName, this.selectedProject)
       .then(
         result => {
           this.selectedProjectDetails = result;
@@ -97,7 +87,7 @@ export class UpdateProjectComponent implements OnInit {
       this.updateForm.controls['hoursUsed'].setValue(this.addedHours + this.totalHours);
       this.updateForm.controls['materialsUsed'].setValue(this.addedMaterials + this.totalMaterials);
 
-      this.firebaseService.updateProject(this.selectedBoard, this.updateForm.value).then(
+      this.firebaseService.updateProject(this.boardName, this.updateForm.value).then(
         res => {
           this.router.navigate(['/']);
         }

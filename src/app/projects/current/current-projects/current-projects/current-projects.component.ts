@@ -23,19 +23,10 @@ export class CurrentProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectNames = [];
-    this.selectedProject = '';
+    this.selectedProject = localStorage.getItem('board');
 
     this.currentUserUID = this.auth.auth.currentUser.email;
 
-    this.firebaseService.getBoardNames(this.currentUserUID)
-      .then(result => {
-        this.projectNames = result;
-      }
-      );
-  }
-
-  onChange(event: any) {
-    this.selectedProject = event.target.value;
     this.firebaseService.getAllProjectDetails(this.currentUserUID, this.selectedProject)
       .then(
         result => {
