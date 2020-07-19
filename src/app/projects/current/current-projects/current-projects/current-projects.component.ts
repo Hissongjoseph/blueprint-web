@@ -30,11 +30,12 @@ export class CurrentProjectsComponent implements OnInit {
     this.firebaseService.getAllProjectDetails(this.currentUserUID, this.selectedProject)
       .then(
         result => {
-          this.projectDetails = result;
+          if (result.length > 0) {
+            this.projectDetails = result;
+          }
         }
       ).catch(
         res => {
-          this.projectDetails = [];
         }
       );
   }

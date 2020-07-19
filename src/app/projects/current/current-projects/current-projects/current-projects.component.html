@@ -1,27 +1,40 @@
 <div class="container-fluid">
   <button type="button" class="btn btn-secondary" (click)='downloadCSV()'>Download As CSV</button>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Project ID</th>
-        <th scope="col">Project</th>
-        <th scope="col">Hours Used</th>
-        <th scope="col">Hours Allocated</th>
-        <th scope="col">Materials Used</th>
-        <th scope="col">Materials Allocated</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let project of projectDetails; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ project.id }}</td>
-        <td>{{ project.name }}</td>
-        <td>{{ project.hoursUsed | number }}</td>
-        <td>{{ project.hoursAllocated | number }}</td>
-        <td>{{ project.materialsUsed | currency }}</td>
-        <td>{{ project.materialsAllocated | currency }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Project ID</th>
+            <th scope="col">Project</th>
+            <th scope="col">Hours Used</th>
+            <th scope="col">Hours Allocated</th>
+            <th scope="col">Materials Used</th>
+            <th scope="col">Materials Allocated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div *ngIf="projectDetails; else nodetails">
+            <tr *ngFor="let project of projectDetails; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ project.id }}</td>
+              <td>{{ project.name }}</td>
+              <td>{{ project.hoursUsed | number }}</td>
+              <td>{{ project.hoursAllocated | number }}</td>
+              <td>{{ project.materialsUsed | currency }}</td>
+              <td>{{ project.materialsAllocated | currency }}</td>
+            </tr>
+          </div>
+          <ng-template #nodetails>
+            <tr >
+              <td colspan="7">
+                No Data
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
