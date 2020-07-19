@@ -15,21 +15,23 @@
           </tr>
         </thead>
         <tbody *ngIf="projectDetails; else nodetails">
-            <tr *ngFor="let project of projectDetails; index as i">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{ project.id }}</td>
-              <td>{{ project.name }}</td>
-              <td>{{ project.hoursUsed | number }}</td>
-              <td>{{ project.hoursAllocated | number }}</td>
-              <td>{{ project.materialsUsed | currency }}</td>
-              <td>{{ project.materialsAllocated | currency }}</td>
-            </tr>
+          <tr *ngFor="let project of projectDetails; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ project.id }}</td>
+            <td>{{ project.name }}</td>
+            <td>{{ project.hoursUsed | number }}</td>
+            <td>{{ project.hoursAllocated | number }}</td>
+            <td>{{ project.materialsUsed | currency }}</td>
+            <td>{{ project.materialsAllocated | currency }}</td>
+          </tr>
         </tbody>
         <ng-template #nodetails>
           <tbody>
-            <tr >
-              <td colspan="7">
-                No Projects Found
+            <tr>
+              <td colspan="7 text-center">
+                <div class="text-center">No Projects Found. You should <a [routerLink]="['/create']">create a
+                    project</a>!
+                </div>
               </td>
             </tr>
           </tbody>
