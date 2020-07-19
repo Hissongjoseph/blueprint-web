@@ -2,7 +2,7 @@
   <button type="button" class="btn btn-secondary" (click)='downloadCSV()'>Download As CSV</button>
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -14,8 +14,7 @@
             <th scope="col">Materials Allocated</th>
           </tr>
         </thead>
-        <tbody>
-          <div *ngIf="projectDetails; else nodetails">
+        <tbody *ngIf="projectDetails; else nodetails">
             <tr *ngFor="let project of projectDetails; index as i">
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ project.id }}</td>
@@ -25,15 +24,16 @@
               <td>{{ project.materialsUsed | currency }}</td>
               <td>{{ project.materialsAllocated | currency }}</td>
             </tr>
-          </div>
-          <ng-template #nodetails>
+        </tbody>
+        <ng-template #nodetails>
+          <tbody>
             <tr >
               <td colspan="7">
-                No Data
+                No Projects Found
               </td>
             </tr>
-          </ng-template>
-        </tbody>
+          </tbody>
+        </ng-template>
       </table>
     </div>
   </div>
