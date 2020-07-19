@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
   selectedProject!: string;
 
   constructor(
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,9 @@ export class NavbarComponent implements OnInit {
   onChange(event: any) {
     this.selectedProject = event.target.value;
     localStorage.setItem('board', this.selectedProject);
-    window.location.reload();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url]);
   }
 
 }
