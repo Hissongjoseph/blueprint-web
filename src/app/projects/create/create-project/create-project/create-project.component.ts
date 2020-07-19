@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Project } from 'src/app/modals/project/project.model';
+import { Project } from 'src/app/models/project/project.model';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
