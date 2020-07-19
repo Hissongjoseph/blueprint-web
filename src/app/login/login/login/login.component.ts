@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/modals/user/user.model';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { User } from 'src/app/models/user/user.model';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Router } from '@angular/router';
 
