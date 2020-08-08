@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-responsive-xl table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Board Name:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let board of boardNames">
+            <td>{{ board }}</td>
+          </tr>
+        </tbody>
+        <ng-template #nodetails>
+          <tbody>
+            <tr>
+              <td colspan="7 text-center">
+                <div class="text-center">No Boards Found.</div>
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </div>
+</div>
